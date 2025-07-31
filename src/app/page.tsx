@@ -77,7 +77,7 @@ export default function HomePage() {
     <main className="flex flex-col items-center justify-center min-h-screen p-4 sm:p-8">
       <div className="text-center max-w-3xl mx-auto my-16">
         <h1 className="text-5xl md:text-7xl font-bold tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent/80">
-          AgentVerse
+          Momentum AI
         </h1>
         <p className="mt-6 text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
           Your gateway to specialized AI agents. A modern, minimal interface to interact with powerful Gemini models. Choose an agent to begin your journey.
@@ -105,7 +105,7 @@ export default function HomePage() {
       <section id="advantages" className="w-full max-w-5xl mx-auto py-16">
           <div className="text-center mb-12">
               <h2 className="text-4xl font-bold tracking-tight">Advantages</h2>
-              <p className="mt-2 text-lg text-muted-foreground">Why you'll love AgentVerse.</p>
+              <p className="mt-2 text-lg text-muted-foreground">Why you'll love Momentum AI.</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
               {advantages.map(advantage => (
