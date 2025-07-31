@@ -35,19 +35,21 @@ const summarizeUrlFlow = ai.defineFlow(
     outputSchema: SummarizeUrlOutputSchema,
   },
   async ({url, prompt}) => {
-    const finalPrompt =
-      prompt || `Summarize the content of the following URL: ${url}`;
+    const userPrompt =
+      prompt || `Summarize the content of the following URL.`;
 
     const llmResponse = await ai.generate({
-      prompt: finalPrompt,
-      model: 'googleai/gemini-2.5-flash',
+      prompt: [
+        {text: userPrompt},
+        {media: {url}},
+      ],
+      model: 'googleai/gemini-2.0-flash',
       config: {
-        // @ts-ignore - Explicitly enabling urlContext tool
-        tools: [{urlContext: {}}],
+        tools: [{name: 'urlContext'}],
       },
     });
 
-    const text = llmResponse.text();
+    const text = llmResponse.text;
     return {analysis: text};
   }
 );
