@@ -36,7 +36,8 @@ const summarizeUrlFlow = ai.defineFlow(
   },
   async ({url, prompt}) => {
     const userPrompt =
-      prompt || `Summarize the content of the following URL.`;
+      prompt ||
+      `Provide a detailed and well-formatted summary of the content at the following URL. Use headings, bullet points, and bold text to structure the information clearly. Extract key takeaways and present them at the end.`;
 
     const llmResponse = await ai.generate({
       prompt: `${userPrompt} URL: ${url}`,
