@@ -5,14 +5,24 @@ import { useToast } from '@/hooks/use-toast';
 import { generateText } from '@/ai/flows/generate-text';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Loader2, PenSquare } from 'lucide-react';
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { Loader2, PenSquare, Clipboard } from 'lucide-react';
 
 export function WriterAgent() {
   const [prompt, setPrompt] = useState('');
   const [result, setResult] = useState('');
   const [loading, setLoading] = useState(false);
   const { toast } = useToast();
+
+  const handleCopy = () => {
+    if (!result) return;
+    navigator.clipboard.writeText(result).then(() => {
+      toast({ title: 'Text copied to clipboard!' });
+    }).catch(err => {
+      console.error('Failed to copy text: ', err);
+      toast({ title: 'Failed to copy', variant: 'destructive' });
+    });
+  };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -89,6 +99,12 @@ export function WriterAgent() {
           <CardContent>
             <p className="whitespace-pre-wrap text-foreground/90">{result}</p>
           </CardContent>
+          <CardFooter>
+            <Button onClick={handleCopy} variant="outline" className="w-full">
+              <Clipboard className="mr-2 h-4 w-4" />
+              Copy Text
+            </Button>
+          </CardFooter>
         </Card>
       )}
     </div>
