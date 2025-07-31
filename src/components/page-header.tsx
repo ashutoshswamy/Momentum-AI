@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { ArrowLeft, Home } from 'lucide-react';
+import { Home } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 export function PageHeader({ title }: { title: string }) {
@@ -11,6 +11,7 @@ export function PageHeader({ title }: { title: string }) {
       <Button asChild variant="outline" size="icon">
         <Link href="/">
           <Home className="h-4 w-4" />
+          <span className="sr-only">Home</span>
         </Link>
       </Button>
     </div>
