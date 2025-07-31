@@ -75,7 +75,14 @@ The application features several agents, each designed for a specific purpose:
 - **Document Summarizer**: Upload a document (.pdf, .doc, .txt) and receive a summary or ask specific questions about its content.
 - **URL Summarizer**: Provide a URL to get a detailed summary of the web page's content.
 
+## Connect with the Developer
+
+This project was developed by Ashutosh Swamy. You can connect with him on:
+
+- [GitHub](https://github.com/ashutoshswamy)
+- [LinkedIn](https://linkedin.com/in/ashutoshswamy)
+- [Twitter](https://twitter.com/ashutoshswamy_)
+
 ## Disclaimer
 
 The AI agents provided on this platform generate content based on complex algorithms and vast datasets. While we strive for accuracy and relevance, the generated content may not always be perfect and may sometimes produce incorrect or nonsensical information. Please use the generated content responsibly.
-
