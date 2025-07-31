@@ -1,6 +1,6 @@
 'use client';
 import { AgentCard } from '@/components/agent-card';
-import { PenSquare, Code, Image, BotMessageSquare, Sparkles, BrainCircuit, MousePointerClick, TrendingUp, Zap, Palette, ChessRook } from 'lucide-react';
+import { PenSquare, Code, Image, BotMessageSquare, Sparkles, BrainCircuit, MousePointerClick, TrendingUp, Zap, Palette } from 'lucide-react';
 import { useEffect } from 'react';
 
 const agents = [
@@ -22,12 +22,6 @@ const agents = [
     title: 'Image Generator',
     description: 'Create stunning visuals from text prompts.',
   },
-  {
-    href: '/chess',
-    icon: <ChessRook className="w-8 h-8" />,
-    title: 'Chess Agent',
-    description: 'Play chess against an AI grandmaster.',
-  }
 ];
 
 const features = [
