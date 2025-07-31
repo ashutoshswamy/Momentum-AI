@@ -61,7 +61,7 @@ export function WriterAgent() {
           value={prompt}
           onChange={(e) => setPrompt(e.target.value)}
           rows={4}
-          className="text-base"
+          className="text-base sm:text-sm"
         />
         <Button type="submit" disabled={loading} className="w-full sm:w-auto">
           {loading ? (

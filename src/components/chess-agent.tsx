@@ -114,7 +114,7 @@ export function ChessAgent() {
             <Chessboard boardState={board} />
           </CardContent>
           <CardFooter>
-            <form onSubmit={handleSubmit} className="w-full flex gap-2">
+            <form onSubmit={handleSubmit} className="w-full flex flex-col sm:flex-row gap-2">
               <Input
                 placeholder="Your move..."
                 value={move}
@@ -124,7 +124,7 @@ export function ChessAgent() {
               />
               <Button type="submit" disabled={loading || gameOver}>
                 {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : <MoveRight className="h-4 w-4" />}
-                <span className="sr-only sm:not-sr-only sm:ml-2">Play</span>
+                <span className="ml-2">Play</span>
               </Button>
             </form>
           </CardFooter>

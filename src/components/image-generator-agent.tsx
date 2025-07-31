@@ -63,7 +63,7 @@ export function ImageGeneratorAgent() {
           placeholder="e.g., A photorealistic image of an astronaut riding a horse on Mars"
           value={prompt}
           onChange={(e) => setPrompt(e.target.value)}
-          className="text-base"
+          className="text-base sm:text-sm"
         />
         <Button type="submit" disabled={loading} className="w-full sm:w-auto">
           {loading ? (

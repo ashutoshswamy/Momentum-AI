@@ -52,7 +52,7 @@ export function CoderAgent() {
           value={prompt}
           onChange={(e) => setPrompt(e.target.value)}
           rows={4}
-          className="text-base font-code"
+          className="text-base sm:text-sm font-code"
         />
         <Button type="submit" disabled={loading} className="w-full sm:w-auto">
           {loading ? (
