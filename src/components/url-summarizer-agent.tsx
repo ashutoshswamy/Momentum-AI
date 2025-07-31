@@ -120,7 +120,7 @@ export function UrlSummarizerAgent() {
           <CardContent>
             <div
               className="prose dark:prose-invert max-w-none text-foreground/90"
-              dangerouslySetInnerHTML={{ __html: result.replace(/\n/g, '<br />') }}
+              dangerouslySetInnerHTML={{ __html: result }}
             />
           </CardContent>
            <CardFooter>
