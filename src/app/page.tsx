@@ -1,5 +1,5 @@
 import { AgentCard } from '@/components/agent-card';
-import { PenSquare, Code, Image, Bot } from 'lucide-react';
+import { PenSquare, Code, Image } from 'lucide-react';
 
 const agents = [
   {
@@ -15,12 +15,6 @@ const agents = [
     description: 'Get help with code snippets in any language.',
   },
   {
-    href: '/chess',
-    icon: <Bot className="w-12 h-12" />,
-    title: 'Chess Player',
-    description: 'Play a game of chess against an AI opponent.',
-  },
-  {
     href: '/image-generator',
     icon: <Image className="w-12 h-12" />,
     title: 'Image Generator',
@@ -28,7 +22,7 @@ const agents = [
   },
 ];
 
-export default function Home() {
+export default function HomePage() {
   return (
     <main className="flex flex-col items-center justify-center min-h-screen p-4 sm:p-8">
       <div className="text-center max-w-2xl mx-auto mb-12">
@@ -40,7 +34,7 @@ export default function Home() {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full max-w-6xl">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-5xl">
         {agents.map((agent) => (
           <AgentCard key={agent.title} {...agent} />
         ))}
