@@ -3,11 +3,12 @@
 import { useState } from 'react';
 import { useToast } from '@/hooks/use-toast';
 import { playChess } from '@/ai/flows/play-chess';
+import { suggestMove } from '@/ai/flows/suggest-move';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Chessboard } from '@/components/chessboard';
-import { Loader2, MoveRight, RotateCcw } from 'lucide-react';
+import { Loader2, MoveRight, RotateCcw, Lightbulb } from 'lucide-react';
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '@/components/ui/alert-dialog';
 
 const initialBoard =
@@ -29,6 +30,7 @@ export function ChessAgent() {
   const [gameOver, setGameOver] = useState(false);
   const [winner, setWinner] = useState('');
   const [loading, setLoading] = useState(false);
+  const [suggestionLoading, setSuggestionLoading] = useState(false);
   const { toast } = useToast();
 
   const handleReset = () => {
@@ -38,8 +40,36 @@ export function ChessAgent() {
     setGameOver(false);
     setWinner('');
     setLoading(false);
+    setSuggestionLoading(false);
     toast({ title: 'Game Reset', description: 'A new game has started.' });
   };
+
+  const handleSuggestMove = async () => {
+    setSuggestionLoading(true);
+    try {
+      const response = await suggestMove({ currentBoard: board });
+      toast({
+        title: 'Suggested Move',
+        description: (
+          <div>
+            <p className="font-bold">{response.suggestedMove}</p>
+            <p>{response.reasoning}</p>
+          </div>
+        ),
+        duration: 8000,
+      });
+    } catch (error) {
+      console.error(error);
+      toast({
+        title: 'Suggestion Failed',
+        description: 'Could not get a move suggestion at this time.',
+        variant: 'destructive',
+      });
+    } finally {
+      setSuggestionLoading(false);
+    }
+  };
+
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -73,9 +103,9 @@ export function ChessAgent() {
   };
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 xl:gap-12">
       <div className="lg:col-span-2">
-        <Card>
+        <Card className="shadow-lg">
           <CardHeader>
             <CardTitle>Chess Game</CardTitle>
             <CardDescription>Enter your move in algebraic notation (e.g., e4, Nf3).</CardDescription>
@@ -107,37 +137,48 @@ export function ChessAgent() {
         )}
       </div>
       <div className="lg:col-span-1">
-        <Card>
+        <Card className="shadow-lg">
           <CardHeader>
             <CardTitle>Game Info</CardTitle>
             <CardDescription>History of moves and game controls.</CardDescription>
           </CardHeader>
-          <CardContent className="space-y-4">
-            <AlertDialog>
-              <AlertDialogTrigger asChild>
-                <Button variant="destructive" className="w-full">
-                  <RotateCcw className="mr-2 h-4 w-4" /> Reset Game
-                </Button>
-              </AlertDialogTrigger>
-              <AlertDialogContent>
-                <AlertDialogHeader>
-                  <AlertDialogTitle>Are you sure?</AlertDialogTitle>
-                  <AlertDialogDescription>
-                    This will reset the game board and clear all history. This action cannot be undone.
-                  </AlertDialogDescription>
-                </AlertDialogHeader>
-                <AlertDialogFooter>
-                  <AlertDialogCancel>Cancel</AlertDialogCancel>
-                  <AlertDialogAction onClick={handleReset}>Reset Game</AlertDialogAction>
-                </AlertDialogFooter>
-              </AlertDialogContent>
-            </AlertDialog>
+          <CardContent className="space-y-6">
+            <div className="space-y-2">
+              <Button 
+                variant="outline" 
+                className="w-full"
+                onClick={handleSuggestMove}
+                disabled={suggestionLoading || gameOver}
+              >
+                {suggestionLoading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <Lightbulb className="mr-2 h-4 w-4" />}
+                Suggest Move
+              </Button>
+              <AlertDialog>
+                <AlertDialogTrigger asChild>
+                  <Button variant="destructive" className="w-full">
+                    <RotateCcw className="mr-2 h-4 w-4" /> Reset Game
+                  </Button>
+                </AlertDialogTrigger>
+                <AlertDialogContent>
+                  <AlertDialogHeader>
+                    <AlertDialogTitle>Are you sure?</AlertDialogTitle>
+                    <AlertDialogDescription>
+                      This will reset the game board and clear all history. This action cannot be undone.
+                    </AlertDialogDescription>
+                  </AlertDialogHeader>
+                  <AlertDialogFooter>
+                    <AlertDialogCancel>Cancel</AlertDialogCancel>
+                    <AlertDialogAction onClick={handleReset}>Reset Game</AlertDialogAction>
+                  </AlertDialogFooter>
+                </AlertDialogContent>
+              </AlertDialog>
+            </div>
             <div>
               <h4 className="font-semibold mb-2">Move History</h4>
               {history.length === 0 ? (
                 <p className="text-sm text-muted-foreground">No moves made yet.</p>
               ) : (
-                <div className="max-h-60 overflow-y-auto space-y-1 text-sm font-code pr-2">
+                <div className="max-h-80 overflow-y-auto space-y-2 text-sm font-code pr-2">
                   {history.map((h, i) => (
                     <div key={i} className="flex justify-between p-2 rounded bg-secondary/50">
                       <span>{i + 1}. You: {h.user}</span>
