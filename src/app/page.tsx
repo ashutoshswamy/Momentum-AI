@@ -1,6 +1,6 @@
 'use client';
 import { AgentCard } from '@/components/agent-card';
-import { PenSquare, Code, Image, BotMessageSquare, Sparkles, BrainCircuit, MousePointerClick, TrendingUp, Zap, Palette, FileText, Link } from 'lucide-react';
+import { PenSquare, Code, Image, BotMessageSquare, Sparkles, BrainCircuit, MousePointerClick, TrendingUp, Zap, Palette, FileText, Link, Volume2 } from 'lucide-react';
 import { useEffect } from 'react';
 
 const agents = [
@@ -21,6 +21,12 @@ const agents = [
     icon: <Image className="w-8 h-8" />,
     title: 'Image Generator',
     description: 'Create stunning visuals from text prompts.',
+  },
+  {
+    href: '/tts',
+    icon: <Volume2 className="w-8 h-8" />,
+    title: 'TTS Agent',
+    description: 'Convert text into natural-sounding speech.',
   },
   {
     href: '/document-summarizer',

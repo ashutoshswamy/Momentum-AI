@@ -6,3 +6,4 @@ import '@/ai/flows/generate-text.ts';
 import '@/ai/flows/generate-code.ts';
 import '@/ai/flows/summarize-document.ts';
 import '@/ai/flows/summarize-url.ts';
+import '@/ai/flows/generate-tts.ts';
