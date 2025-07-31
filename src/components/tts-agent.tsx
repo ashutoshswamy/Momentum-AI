@@ -7,11 +7,19 @@ import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Loader2, Volume2 } from 'lucide-react';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+
+const voices = [
+  'Algenib', 'Achernar', 'Hadar', 'Procyon', 'Rigel', 'Vega', 'Spica',
+  'Antares', 'Capella', 'Sirius', 'Canopus', 'Arcturus', 'Altair',
+  'Deneb', 'Miaplacidus', 'Peacock', 'Fomalhaut'
+];
 
 export function TtsAgent() {
   const [prompt, setPrompt] = useState('');
   const [audioUrl, setAudioUrl] = useState('');
   const [loading, setLoading] = useState(false);
+  const [selectedVoice, setSelectedVoice] = useState('Algenib');
   const { toast } = useToast();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -29,7 +37,7 @@ export function TtsAgent() {
     setAudioUrl('');
 
     try {
-      const { audio } = await generateSpeech({ text: prompt });
+      const { audio } = await generateSpeech({ text: prompt, voice: selectedVoice });
       setAudioUrl(audio);
     } catch (error) {
       console.error(error);
@@ -53,19 +61,31 @@ export function TtsAgent() {
           rows={4}
           className="text-base sm:text-sm"
         />
-        <Button type="submit" disabled={loading} className="w-full sm:w-auto">
-          {loading ? (
-            <>
-              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-              Generating...
-            </>
-          ) : (
-            <>
-              <Volume2 className="mr-2 h-4 w-4" />
-              Generate Speech
-            </>
-          )}
-        </Button>
+        <div className="flex flex-col sm:flex-row gap-4">
+          <Select onValueChange={setSelectedVoice} defaultValue={selectedVoice}>
+            <SelectTrigger className="w-full sm:w-[200px]">
+              <SelectValue placeholder="Select a voice" />
+            </SelectTrigger>
+            <SelectContent>
+              {voices.map((voice) => (
+                <SelectItem key={voice} value={voice}>{voice}</SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+          <Button type="submit" disabled={loading} className="w-full sm:w-auto">
+            {loading ? (
+              <>
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                Generating...
+              </>
+            ) : (
+              <>
+                <Volume2 className="mr-2 h-4 w-4" />
+                Generate Speech
+              </>
+            )}
+          </Button>
+        </div>
       </form>
 
       {loading && (
