@@ -1,6 +1,6 @@
 'use client';
 import { AgentCard } from '@/components/agent-card';
-import { PenSquare, Code, Image, BotMessageSquare, Sparkles, BrainCircuit, MousePointerClick, TrendingUp, Zap, Palette } from 'lucide-react';
+import { PenSquare, Code, Image, BotMessageSquare, Sparkles, BrainCircuit, MousePointerClick, TrendingUp, Zap, Palette, FileText, Link } from 'lucide-react';
 import { useEffect } from 'react';
 
 const agents = [
@@ -21,6 +21,18 @@ const agents = [
     icon: <Image className="w-8 h-8" />,
     title: 'Image Generator',
     description: 'Create stunning visuals from text prompts.',
+  },
+  {
+    href: '/document-summarizer',
+    icon: <FileText className="w-8 h-8" />,
+    title: 'Document Summarizer',
+    description: 'Summarize or ask questions about a document.',
+  },
+  {
+    href: '/url-summarizer',
+    icon: <Link className="w-8 h-8" />,
+    title: 'URL Summarizer',
+    description: 'Analyze the content of a web page.',
   },
 ];
 
