@@ -4,7 +4,7 @@
 
 @layer base {
   :root {
-    --background: 0 0% 96%; /* #F5F5F5 */
+    --background: 0 0% 100%;
     --foreground: 240 10% 3.9%;
     --card: 0 0% 100%;
     --card-foreground: 240 10% 3.9%;
@@ -80,5 +80,13 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+  body.home-page {
+    @apply bg-white;
+    background-image: radial-gradient(circle at 25% 25%, hsl(var(--primary)/0.1), rgba(255,255,255,0) 40%), radial-gradient(circle at 75% 75%, hsl(var(--accent)/0.1), rgba(255,255,255,0) 40%);
+  }
+  .dark body.home-page {
+      @apply bg-background;
+      background-image: radial-gradient(circle at 25% 25%, hsl(var(--primary)/0.15), rgba(0,0,0,0) 40%), radial-gradient(circle at 75% 75%, hsl(var(--accent)/0.15), rgba(0,0,0,0) 40%);
   }
 }
