@@ -6,15 +6,26 @@ import { useToast } from '@/hooks/use-toast';
 import { generateImage } from '@/ai/flows/generate-image';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
-import { Loader2, Image as ImageIcon } from 'lucide-react';
+import { Loader2, Image as ImageIcon, Download } from 'lucide-react';
 
 export function ImageGeneratorAgent() {
   const [prompt, setPrompt] = useState('');
   const [imageUrl, setImageUrl] = useState('');
   const [loading, setLoading] = useState(false);
   const { toast } = useToast();
+
+  const handleDownload = () => {
+    if (!imageUrl) return;
+    const link = document.createElement('a');
+    link.href = imageUrl;
+    // suggest a filename
+    link.download = `${prompt.substring(0, 20).replace(/\s/g, '_') || 'generated_image'}.png`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -89,6 +100,14 @@ export function ImageGeneratorAgent() {
               )}
             </div>
           </CardContent>
+          {imageUrl && (
+            <CardFooter>
+              <Button onClick={handleDownload} variant="outline" className="w-full">
+                <Download className="mr-2 h-4 w-4" />
+                Download Image
+              </Button>
+            </CardFooter>
+          )}
         </Card>
       )}
     </div>
