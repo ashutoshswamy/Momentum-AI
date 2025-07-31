@@ -39,13 +39,10 @@ const summarizeUrlFlow = ai.defineFlow(
       prompt || `Summarize the content of the following URL.`;
 
     const llmResponse = await ai.generate({
-      prompt: [
-        {text: userPrompt},
-        {media: {url}},
-      ],
+      prompt: `${userPrompt} URL: ${url}`,
       model: 'googleai/gemini-2.5-flash',
       config: {
-        tools: [{name: 'urlContext'}],
+        tools: [{urlContext: {}}],
       },
     });
 
