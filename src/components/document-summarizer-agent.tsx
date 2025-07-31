@@ -139,7 +139,10 @@ export function DocumentSummarizerAgent() {
             <CardTitle>Analysis Result</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="whitespace-pre-wrap text-foreground/90">{result}</p>
+             <div
+              className="prose dark:prose-invert max-w-none text-foreground/90"
+              dangerouslySetInnerHTML={{ __html: result.replace(/\n/g, '<br />') }}
+            />
           </CardContent>
            <CardFooter>
             <Button onClick={handleCopy} variant="outline" className="w-full">
