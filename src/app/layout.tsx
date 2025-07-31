@@ -1,7 +1,6 @@
 import type {Metadata} from 'next';
 import './globals.css';
 import { Toaster } from "@/components/ui/toaster"
-import { SiteHeader } from '@/components/site-header';
 
 export const metadata: Metadata = {
   title: 'AgentVerse',
@@ -22,7 +21,6 @@ export default function RootLayout({
       </head>
       <body className="font-body antialiased">
         <div className="flex flex-col min-h-screen">
-          <SiteHeader />
           <main className="flex-1">
             {children}
           </main>
