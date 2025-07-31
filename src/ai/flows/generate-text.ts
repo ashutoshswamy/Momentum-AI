@@ -40,7 +40,7 @@ const generateTextFlow = ai.defineFlow(
   async input => {
     const {text} = await ai.generate({
       prompt: `You are a creative writer. Generate text based on the following prompt: ${input.prompt}`,
-      model: 'googleai/gemini-2.0-flash',
+      model: 'googleai/gemini-2.5-flash',
     });
     return {text: text!};
   }
