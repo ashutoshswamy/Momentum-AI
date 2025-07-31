@@ -36,17 +36,17 @@ export function Footer() {
           <div className="col-span-1">
             <h3 className="font-semibold mb-3">Connect with Us</h3>
             <div className="flex space-x-4">
-              <Link href="#" className="text-muted-foreground hover:text-primary transition-colors">
+              <Link href="https://github.com/ashutoshswamy" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
                 <Github className="w-5 h-5" />
               </Link>
-              <Link href="#" className="text-muted-foreground hover:text-primary transition-colors">
+              <Link href="https://linkedin.com/in/ashutoshswamy" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
                 <Linkedin className="w-5 h-5" />
               </Link>
-              <Link href="#" className="text-muted-foreground hover:text-primary transition-colors">
+              <Link href="https://twitter.com/ashutoshswamy_" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
                 <Twitter className="w-5 h-5" />
               </Link>
             </div>
-            <p className="text-sm text-muted-foreground mt-4">Developer: Firebase</p>
+            <p className="text-sm text-muted-foreground mt-4">Developer: Ashutosh Swamy</p>
           </div>
 
           {/* Column 4: Theme */}
