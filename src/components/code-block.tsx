@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Check, Clipboard } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import { Markdown } from './markdown';
 
 interface CodeBlockProps {
   code: string;
@@ -14,6 +15,7 @@ export function CodeBlock({ code }: CodeBlockProps) {
   const { toast } = useToast();
 
   const copyToClipboard = () => {
+    // We only copy the raw code, not the rendered markdown
     navigator.clipboard.writeText(code).then(() => {
       setHasCopied(true);
       toast({ title: 'Copied to clipboard!' });
@@ -23,12 +25,13 @@ export function CodeBlock({ code }: CodeBlockProps) {
       toast({ title: 'Failed to copy', variant: 'destructive' });
     });
   };
+  
+  // Format the code as a markdown code block for react-markdown
+  const markdownCode = "```\n" + code + "\n```";
 
   return (
     <div className="relative group">
-      <pre className="bg-gray-800 text-white p-4 rounded-md overflow-x-auto font-code text-sm">
-        <code>{code}</code>
-      </pre>
+      <Markdown content={markdownCode} />
       <Button
         size="icon"
         variant="ghost"

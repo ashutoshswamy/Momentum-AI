@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Loader2, PenSquare, Clipboard } from 'lucide-react';
+import { Markdown } from './markdown';
 
 export function WriterAgent() {
   const [prompt, setPrompt] = useState('');
@@ -97,10 +98,7 @@ export function WriterAgent() {
             <CardTitle>Generated Text</CardTitle>
           </CardHeader>
           <CardContent>
-            <div
-              className="prose dark:prose-invert max-w-none text-foreground/90"
-              dangerouslySetInnerHTML={{ __html: result.replace(/\n/g, '<br />') }}
-            />
+            <Markdown content={result} />
           </CardContent>
           <CardFooter>
             <Button onClick={handleCopy} variant="outline" className="w-full">
