@@ -10,10 +10,12 @@ import { Loader2, Volume2 } from 'lucide-react';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
 const voices = [
-  'Algenib', 'Achernar', 'Hadar', 'Procyon', 'Rigel', 'Vega', 'Spica',
-  'Antares', 'Capella', 'Sirius', 'Canopus', 'Arcturus', 'Altair',
-  'Deneb', 'Miaplacidus', 'Peacock', 'Fomalhaut'
+  'Zephyr', 'Puck', 'Charon', 'Kore', 'Fenrir', 'Leda', 'Orus', 'Aoede', 'Callirrhoe',
+  'Autonoe', 'Enceladus', 'Iapetus', 'Umbriel', 'Algieba', 'Despina', 'Erinome',
+  'Algenib', 'Rasalgethi', 'Laomedeia', 'Achernar', 'Alnilam', 'Schedar', 'Gacrux',
+  'Pulcherrima', 'Achird', 'Zubenelgenubi', 'Vindemiatrix', 'Sadachbia', 'Sadaltager', 'Sulafat'
 ];
+
 
 export function TtsAgent() {
   const [prompt, setPrompt] = useState('');
